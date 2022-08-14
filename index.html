@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>password validation</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="box">
+            <h1>Password Validator</h1>
+            <div class="inputBox">
+                <input type="password" placeholder="Password" id="pswd" onkeyup="checkPassword(this.value)" minlength="8">
+                <span >
+                    <i id="togglebtn"class="ri-eye-close-fill"></i>
+                    <!-- <i id="togglebtn" class="ri-eye-fill"></i> -->
+                </span>
+            </div>
+            <div class="validation">
+                <ul>
+                    <li id="lower"><span > Atleast one Lower character</li></span>
+                    <li id="upper"><span >Atleast one Upper character</li></span>
+                    <li id="number"><span ></span>Atleast one number</li>
+                    <li id="special"><span ></span>Atleast one Special character</li>
+                    <li id="length"><span ></span>Atleast 8 character</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let pswd = document.getElementById("pswd");
+    let togglebtn = document.getElementById("togglebtn");
+    // for password field
+    togglebtn.addEventListener("click",function(){
+        if(pswd.type==="password")
+             {pswd.setAttribute("type","text");
+             togglebtn.classList ="ri-eye-fill";
+            }
+        else{
+            pswd.setAttribute("type","password")
+            togglebtn.classList ="ri-eye-close-fill";
+           
+        }
+    })
+
+// for checking password condition
+
+    let upper = document.getElementById("upper");
+    let lower = document.getElementById("lower");
+    let number = document.getElementById("number");
+    let special = document.getElementById("special");
+    let length = document.getElementById("length");
+
+    let point = document.getElementById("point")
+
+    function checkPassword(data){
+
+        let lowerCase = new RegExp('(?=.*[a-z])');
+        let upperCase = new RegExp('(?=.*[A-Z])');
+        let digit = new RegExp('(?=.*[0-9])');
+        let specialChar = new RegExp('(?=.*[!@`~\%^&*%$#/])');
+        let minlength = new RegExp('(?=.{8,})');
+
+      
+        if(lowerCase.test(data)){
+            lower.style.color="#00b894"
+            
+        }
+        else{
+            lower.style.color="#fff"
+            
+        }
+
+        if(upperCase.test(data)){
+            upper.style.color="#00b894"
+            
+
+        }
+        else{
+            upper.style.color="#fff"
+        }
+        if(digit.test(data)){
+            number.style.color="#00b894"
+            
+
+        }
+        else{
+            number.style.color="#fff"
+        }
+        if(specialChar.test(data)){
+            special.style.color="#00b894"
+            
+
+        }
+        else{
+            special.style.color="#fff"
+        }
+        if(minlength.test(data)){
+            length.style.color="#00b894"
+            
+
+        }
+        else{
+            length.style.color="#fff"
+        }
+        
+            
+    }
+</script>
+</html>
